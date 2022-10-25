@@ -130,8 +130,8 @@ def plot_confusion_matrix(cm, title='Confusion matrix', cmap=plt.cm.Blues):
 
 def plot_roc_curve(y_test, y_pred):
     false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, y_pred)
-    print "False Positive rate: ",false_positive_rate
-    print "True Positive rate: ",true_positive_rate
+    print("False Positive rate: ",false_positive_rate)
+    print("True Positive rate: ",true_positive_rate)
     
     roc_auc = auc(false_positive_rate, true_positive_rate)
 
@@ -168,7 +168,7 @@ def train(X_train,y_train,X_test):
     clf.best_estimator_.fit(X_train,y_train)
     # Estimate score
     scores = cross_validation.cross_val_score(clf.best_estimator_, X_train,y_train, cv=5)
-    print scores
+    print(scores)
     print('Estimated score: %0.5f (+/- %0.5f)' % (scores.mean(), scores.std() / 2))
     title = 'Learning Curves (SVM, rbf kernel, $\gamma=%.6f$)' %clf.best_estimator_.gamma
     plot_learning_curve(clf.best_estimator_, title, X_train, y_train, cv=5)
@@ -188,25 +188,25 @@ x,y=read_datasets()
 
 print "extracting featues.....\n"
 x=extract_features(x)
-print x.columns
-print x.describe()
+print(x.columns)
+print(x.describe())
 
 
 # In[78]:
 
-print "spliting datasets in train and test dataset...\n"
+print("spliting datasets in train and test dataset...\n")
 X_train,X_test,y_train,y_test = train_test_split(x, y, test_size=0.20, random_state=44)
 
 
 # In[79]:
 
-print "training datasets.......\n"
+print("training datasets.......\n")
 y_test,y_pred = train(X_train,y_train,X_test)
 
 
 # In[80]:
 
-print 'Classification Accuracy on Test dataset: ' ,accuracy_score(y_test, y_pred)
+print('Classification Accuracy on Test dataset: ' ,accuracy_score(y_test, y_pred))
 
 
 # In[82]:
